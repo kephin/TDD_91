@@ -1,4 +1,8 @@
 const computedData = (items, groupNumber, prop, acc = []) => {
+  if (groupNumber <= 0) {
+    throw new Error('Group number should be greater than 0.');
+  }
+
   if (items.length === 0) {
     return acc;
   }

@@ -1,4 +1,3 @@
-const mocha = require('mocha');
 const expect = require('expect');
 
 const utils = require('./utils.js');
@@ -66,7 +65,7 @@ it('should sum up cost data grouped by 3', () => {
   //act
   const actual = utils.computedData(data, 3, 'cost');
   //assert
-  expect(expected).toEqual(actual);
+  expect(actual).toEqual(expected);
 });
 
 it('should sum up revenue data grouped by 4', () => {
@@ -75,5 +74,42 @@ it('should sum up revenue data grouped by 4', () => {
   //act
   const actual = utils.computedData(data, 4, 'revenue');
   //assert
-  expect(expected).toEqual(actual);
+  expect(actual).toEqual(expected);
+});
+
+//boundary conditions
+it('should sum up id data grouped by 1', () => {
+  //arrange
+  const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+  //act
+  const actual = utils.computedData(data, 1, 'id');
+  //assert
+  expect(actual).toEqual(expected);
+});
+
+it('should sum up sellPrice data grouped by 11', () => {
+  //arrange
+  const expected = [286];
+  //act
+  const actual = utils.computedData(data, 11, 'sellPrice');
+  //assert
+  expect(actual).toEqual(expected);
+});
+
+//outside the boundary
+it('should throw error when grouped by 0', () => {
+  //arrange
+  const errorMessage = 'Group number should be greater than 0.';
+  //act
+  //assert
+  expect(utils.computedData).toThrow(Error, errorMessage);
+});
+
+it('should sum up cost data grouped by 100', () => {
+  //arrange
+  const expected = [66];
+  //act
+  const actual = utils.computedData(data, 100, 'cost');
+  //assert
+  expect(actual).toEqual(expected);
 });
