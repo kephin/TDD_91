@@ -7,10 +7,11 @@ const computedData = (items, groupNumber, prop, acc = []) => {
     return acc;
   }
 
-  let sum = 0;
-  items.slice(0, groupNumber).map((item) => {
-    sum += item[prop];
-  });
+  const sum = items
+    .slice(0, groupNumber)
+    .map(item => item[prop])
+    .reduce((prev, curr) => prev + curr);
+
   acc.push(sum);
   return computedData(items.slice(groupNumber), groupNumber, prop, acc);
 };
