@@ -2,7 +2,7 @@ const expect = require('expect');
 
 const utils = require('./utils.js');
 
-const data = [{
+const orders = [{
   id: 1,
   cost: 1,
   revenue: 11,
@@ -59,39 +59,39 @@ const data = [{
   sellPrice: 31,
 }];
 
-it('should sum up cost data grouped by 3', () => {
+it('should sum up cost orders grouped by 3', () => {
   //arrange
   const expected = [6, 15, 24, 21];
   //act
-  const actual = utils.computedData(data, 3, 'cost');
+  const actual = utils.computedData(orders, 3, 'cost');
   //assert
   expect(actual).toEqual(expected);
 });
 
-it('should sum up revenue data grouped by 4', () => {
+it('should sum up revenue orders grouped by 4', () => {
   //arrange
   const expected = [50, 66, 60];
   //act
-  const actual = utils.computedData(data, 4, 'revenue');
+  const actual = utils.computedData(orders, 4, 'revenue');
   //assert
   expect(actual).toEqual(expected);
 });
 
 //boundary conditions
-it('should sum up id data grouped by 1', () => {
+it('should sum up id orders grouped by 1', () => {
   //arrange
   const expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
   //act
-  const actual = utils.computedData(data, 1, 'id');
+  const actual = utils.computedData(orders, 1, 'id');
   //assert
   expect(actual).toEqual(expected);
 });
 
-it('should sum up sellPrice data grouped by 11', () => {
+it('should sum up sellPrice orders grouped by 11', () => {
   //arrange
   const expected = [286];
   //act
-  const actual = utils.computedData(data, 11, 'sellPrice');
+  const actual = utils.computedData(orders, 11, 'sellPrice');
   //assert
   expect(actual).toEqual(expected);
 });
@@ -105,11 +105,11 @@ it('should throw error when grouped by 0', () => {
   expect(utils.computedData).toThrow(Error, errorMessage);
 });
 
-it('should sum up cost data grouped by 100', () => {
+it('should sum up cost orders grouped by 100', () => {
   //arrange
   const expected = [66];
   //act
-  const actual = utils.computedData(data, 100, 'cost');
+  const actual = utils.computedData(orders, 100, 'cost');
   //assert
   expect(actual).toEqual(expected);
 });
